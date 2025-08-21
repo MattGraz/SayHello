@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Graziano Announcement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Base Styles */
+        body {
+            background-color: #f4f4f4;
+        }
+
+        /* Dad Version (Gazette) Styles */
+        .gazette-view {
+            font-family: 'Lora', serif;
+        }
+        .gazette-view h1, .gazette-view h2, .gazette-view h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .newspaper-title {
+            text-align: center;
+            border-bottom: 4px double #333;
+            border-top: 1px solid #333;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .newspaper-title h1 {
+            font-size: 2.5rem; sm:font-size: 4rem;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .sub-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .article-headline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        .dateline-corp {
+            font-weight: 700;
+            color: #555;
+        }
+        .ad-box-corp {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background-color: #f9f9f9;
+        }
+        .ad-box-corp h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mom Version (Chronicle) Styles */
+        .chronicle-view {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .chronicle-view h1, .chronicle-view h2, .chronicle-view .headline, .chronicle-view h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .magazine-title {
+            font-size: 2rem; sm:font-size: 3.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid #ddd;
+            border-top: 1px solid #ddd;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+            margin: 0.5rem 0 2rem 0;
+        }
+        .headline {
+            font-size: 2rem; sm:font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .dateline-fun {
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #555;
+            letter-spacing: 1px;
+        }
+        .drop-cap::first-letter {
+            font-size: 4em;
+            font-family: 'Playfair Display', serif;
+            float: left;
+            line-height: 0.8em;
+            padding-right: 0.1em;
+        }
+        .ad-box-fun {
+            border: 1px solid #eee;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            background-color: #fff;
+        }
+        .ad-box-fun h3 {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        .toggle-btn.active {
+            background-color: #333;
+            color: #fff;
+            border-color: #333;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="max-w-7xl mx-auto p-4">
+        <!-- Toggle Buttons -->
+        <div class="flex justify-center my-6">
+            <div class="border border-gray-300 rounded-lg p-1 flex space-x-1 bg-gray-100">
+                <button id="showGazette" class="toggle-btn active text-sm sm:text-base font-semibold py-2 px-4 rounded-md transition-colors duration-300">
+                    Corporate View
+                </button>
+                <button id="showChronicle" class="toggle-btn text-sm sm:text-base font-semibold py-2 px-4 rounded-md transition-colors duration-300">
+                    Fun View
+                </button>
+            </div>
+        </div>
+
+        <!-- Container for Dad's Version -->
+        <div id="gazetteContainer">
+            <div class="gazette-view max-w-7xl mx-auto bg-white shadow-lg p-6 sm:p-10">
+                <header class="newspaper-title">
+                    <h1>The Graziano Gazette</h1>
+                </header>
+                <div class="sub-header text-gray-600 text-xs sm:text-sm">
+                    <span>VOL. III, NO. 1</span>
+                    <span>A GRAZIANO & GRAZIANO PUBLICATION</span>
+                    <span>AUGUST 20, 2025</span>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                    <main class="lg:col-span-2">
+                        <article>
+                            <h2 class="article-headline">Graziano & Co. Confirms "Project Tie-Breaker"; Majority Stake to Shift in 2026</h2>
+                            <hr class="my-4">
+                            <p class="mb-4"><span class="dateline-corp">MENTOR, OH</span> – Graziano & Co. senior management confirmed today that "Project Tie-Breaker," a clandestine, multi-quarter initiative, is officially underway. The project stems from an intensive, after-hours R&D session between the CEO and the Head of Production which proved highly successful. Upon its successful completion in Q1 2026, the project will permanently shift the controlling interest of the household to the junior division, giving them a 3-to-2 majority stake. Corporate watchdogs are now on high alert, as a hostile takeover is imminent, with the junior division expected to seize the snack cabinet and demand sweeping changes to corporate policy on bedtimes and TV.</p>
+                            <p class="mb-4">"This new project will be our single greatest market disruptor to date, fundamentally altering our internal power structure," CEO Matt Graziano stated in a press conference. "It is a crucial long-term investment that ensures the Graziano brand will dominate for years to come. In the short-term, we are bracing for impact and aggressively increasing our operating budget for snacks, hot wheels, crayons, and diapers."</p>
+                            <p class="mb-4">Junior Partners Dominick and Vinny, who currently enjoy a balanced power dynamic, have been briefed on the impending shift. In a joint statement, the partners confirmed they have formed a temporary strategic alliance to protect their portfolio of tangible assets. "While we are committed to a smooth onboarding process for the new personnel, we will aggressively defend our proprietary assets from any and all encroachment," stated Dominick Graziano, the elder of the two junior partners. He specifically cited the firm's extensive "Hot Wheels" vehicle fleet as a non-negotiable asset. The younger junior partner, Vinny Graziano, later issued a memo fully concurring with his partner's position.</p>
+                            <p class="mb-4">The project's Head of Production, Jessica Graziano, is overseeing development from the primary manufacturing facility, which is currently undergoing significant physical expansion to accommodate the new product line. She described the early phase as "promising, if a bit nauseating," but stated that "all third-party quality control audits have been exemplary, and initial imaging reports confirm the asset is developing well ahead of schedule."</p>
+                            <p class="mb-4">The board has declined further comment pending the 20-week milestone review. Market reaction from key shareholders (grandparents) has been overwhelmingly positive, with the forecast for future cuddles, trips to the beach, and Happy Meals looking extremely strong. The company advises the public to anticipate a significant Q1 increase in overall household volume—both in noise and in love.</p>
+                            
+                            <!-- Growth Projection Chart -->
+                            <div class="mt-8 pt-6 border-t-2 border-gray-200">
+                                <h3 class="text-xl font-bold mb-4">Personnel Growth Projection (Junior Division)</h3>
+                                <canvas id="growthChart"></canvas>
+                            </div>
+                        </article>
+                    </main>
+                    <aside>
+                        <div class="ad-box-corp">
+                            <h3>Post-Merger De-Briefing Tool</h3>
+                            <p class="text-sm">Introducing the "Boardroom Bourbon" collection. Specially designed for post-negotiation analysis and fourth-quarter stress mitigation. Diversify your evening portfolio and achieve a significant ROI on personal tranquility.</p>
+                        </div>
+                        <div class="ad-box-corp">
+                            <h3>For Your Strategic Intelligence Division</h3>
+                            <p class="text-sm">"The Library" offers a portfolio of diverse narratives, allowing senior management to reallocate mental bandwidth and engage in the quiet acquisition of new perspectives. A vital tool for maintaining a competitive edge.</p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container for Mom's Version -->
+        <div id="chronicleContainer" class="hidden">
+            <div class="chronicle-view max-w-4xl mx-auto bg-white shadow-lg">
+                <header>
+                    <h1 class="magazine-title">The Chronicle</h1>
+                    <p class="subtitle">The Source for All Things Fabulous in the 440</p>
+                </header>
+                <div class="p-6 sm:p-12">
+                    <article>
+                        <h2 class="headline">The Announcement That Has Everyone Talking: Inside the Grazianos' 'Project Tie-Breaker'!</h2>
+                        <p class="mb-6 drop-cap"><span class="dateline-fun">MENTOR</span> – Darling, have you heard the news? The social season is officially abuzz, and the talk of the town is, of course, the ever-stylish Graziano family. The ultimate power couple, Matt and Jessica, have just announced their most daring and anticipated collaboration to date: a third child, set to debut in the spring of 2026!</p>
+                        <p class="mb-6">Sources say the project stems from a highly creative (and very private) design session between the handsome husband-and-wife duo. This new "collection" is poised to shake up the entire household, shifting the balance of power to an adorable 3-to-2 majority. The kids are officially taking over, and frankly, we can't wait to see the fabulous chaos!</p>
+                        <div class="ad-box-fun">
+                            <h3>The Afternoon Elixir</h3>
+                            <p class="text-gray-600">The secret to surviving a chaotic schedule with effortless grace isn't a secret at all—it's chilled, it's bubbly, and it comes in a sleek silver can. Diet Coke: The essential accessory for the grandmother on the go.</p>
+                        </div>
+                        <p class="mb-6">"It's going to be our single greatest game-changer," Matt told us in an exclusive chat. "It's a bold new direction for the Graziano brand, and we're so excited. We're already stocking up on this season's absolute must-haves: snacks, Hot Wheels, crayons, and of course, diapers."</p>
+                        <p class="mb-6">The family's original tastemakers, Dominick and Vinny, are said to be preparing for the new arrival by forming a secret pact. An insider revealed the two have agreed to protect their "vintage collections" (i.e., toys). "We are simply thrilled to welcome a new face," Dominick was overheard saying, "but the Hot Wheels are non-negotiable. That's final." Vinny, ever the chic trend-follower, was seen nodding in vigorous agreement.</p>
+                        <div class="ad-box-fun">
+                            <h3>This Season's Most Exclusive Retreat</h3>
+                            <p class="text-gray-600">Looking for a secret getaway? Find it between the pages of a good book. The ultimate luxury is a locked door and a new chapter during that brief, magical window of nap time.</p>
+                        </div>
+                        <p class="mb-6">The creative force behind it all, Jessica, is already glowing and says her latest, most personal project is coming along beautifully. She described the early phase as "promising, if a bit nauseating," but confirmed that after private consultations with top experts, the "first look" at the new arrival was simply perfect.</p>
+                        <div class="ad-box-fun">
+                            <h3>Announcing: The Nana Concierge</h3>
+                            <p class="text-gray-600">The premier, all-inclusive childcare solution is here. Our bespoke services include artisanal snack preparation, expert-level spoiling, and on-demand cuddle sessions. Accepting VIP clients for the Spring 2026 season.</p>
+                        </div>
+                        <p class="mb-6">The family's patrons (the grandparents, of course!) are reportedly over the moon, with forecasts for future cuddles, trips to the beach, and Happy Meals looking extremely strong. One thing is for certain: the House of Graziano is about to get a lot louder, and infinitely more fabulous. We'll be watching!</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gazetteBtn = document.getElementById('showGazette');
+        const chronicleBtn = document.getElementById('showChronicle');
+        const gazetteContainer = document.getElementById('gazetteContainer');
+        const chronicleContainer = document.getElementById('chronicleContainer');
+
+        gazetteBtn.addEventListener('click', () => {
+            gazetteContainer.classList.remove('hidden');
+            chronicleContainer.classList.add('hidden');
+            gazetteBtn.classList.add('active');
+            chronicleBtn.classList.remove('active');
+        });
+
+        chronicleBtn.addEventListener('click', () => {
+            chronicleContainer.classList.remove('hidden');
+            gazetteContainer.classList.add('hidden');
+            chronicleBtn.classList.add('active');
+            gazetteBtn.classList.remove('active');
+        });
+
+        // Chart.js implementation
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        const growthChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Q4 2025', 'Q1 2026'],
+                datasets: [{
+                    label: 'Junior Division Personnel',
+                    data: [2, 3],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 3,
+                    tension: 0.1,
+                    fill: true,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 4,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                return value + ' members'
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Number of Personnel'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Fiscal Quarter'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
